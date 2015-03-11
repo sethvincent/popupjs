@@ -1,0 +1,17 @@
+<section class="popupjs-wrapper">
+  <div class="popupjs-container">
+    <div class="popupjs-header">
+      <button class="popupjs-close">x</button>
+    </div>
+    
+    <div class="popupjs-content">
+      <%- content %>
+    </div>
+    
+    <div class="popupjs-actions">
+      <% buttons.forEach(function (button) { %>
+        <button class="button btn popupjs-button-<%= button.className %>"><%= button.text %></button>
+      <% }) %>
+    </div>
+  </div>
+</section>
