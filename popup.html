@@ -8,10 +8,12 @@
       <%= content %>
     </div>
     
+    <% if (buttons) { %>
     <div class="popupjs-actions">
       <% buttons.forEach(function (button) { %>
         <button class="button btn popupjs-button-<%= button.className %>"><%= button.text %></button>
       <% }) %>
     </div>
+    <% } %>
   </div>
 </section>

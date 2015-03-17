@@ -15,10 +15,14 @@ function Popup (opts) {
   
   this.template = popupTemplate || opts.template
   this.el = opts.el || document.body
+  this.id = opts.id
   
-  this.data = {
-    content: opts.content || '',
-    buttons: opts.buttons || [{
+  this.data = { content: opts.content || '' }
+  
+  if (opts.buttons === false) this.data.buttons = null
+  
+  else {
+    this.data.buttons = opts.buttons || [{
       text: 'OK',
       className: 'confirm',
       fn: function () {
@@ -34,6 +38,7 @@ Emitter(Popup.prototype)
 
 Popup.prototype._create = function () {
   this.html = document.createElement('div')
+  this.html.id = this.id
   this.html.className = 'popupjs-background'
   this.html.innerHTML = this.template(this.data)
   this._createEventListeners()
@@ -52,12 +57,14 @@ Popup.prototype._createEventListeners = function () {
     }
   })
   
-  this.data.buttons.forEach(function (button) {
-    on(document.body, '.popupjs-button-' + button.className, 'click', function (e) {
-      if (!button.fn) return self.remove()
-      button.fn(e)
+  if (this.data.buttons) {
+    this.data.buttons.forEach(function (button) {
+      on(document.body, '.popupjs-button-' + button.className, 'click', function (e) {
+        if (!button.fn) return self.remove()
+        button.fn(e)
+      })
     })
-  })
+  }
 }
 
 Popup.prototype.show = function () {
