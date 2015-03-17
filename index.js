@@ -47,7 +47,6 @@ Popup.prototype._createEventListeners = function () {
   })
   
   this.data.buttons.forEach(function (button) {
-    console.log('wat are you doing')
     on(document.body, '.popupjs-button-' + button.className, 'click', function (e) {
       if (!button.fn) return self.remove()
       button.fn(e)
