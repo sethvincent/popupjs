@@ -46,6 +46,12 @@ Popup.prototype._createEventListeners = function () {
     self.remove()
   })
   
+  on(document.body, '.popupjs-background', 'click', function (e) {
+    if (e.target.className === 'popupjs-background') {
+      self.remove()
+    }
+  })
+  
   this.data.buttons.forEach(function (button) {
     on(document.body, '.popupjs-button-' + button.className, 'click', function (e) {
       if (!button.fn) return self.remove()
@@ -71,6 +77,9 @@ Popup.prototype.update = function (data) {
 }
 
 Popup.prototype.remove = function () {
-  this.el.removeChild(this.html)
-  this.emit('remove')
+  if (this.html) {
+    this.el.removeChild(this.html)
+    delete this.html
+    this.emit('remove')
+  }
 }
