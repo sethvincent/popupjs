@@ -79,8 +79,9 @@ Popup.prototype.hide = function () {
 
 Popup.prototype.update = function (data) {
   this.data = extend(this.data, data)
-  this.html = this.template(data)
+  this.html.innerHTML = this.template(this.data)
   this.emit('update', this.data, this.html)
+  this._createEventListeners()
 }
 
 Popup.prototype.remove = function () {
