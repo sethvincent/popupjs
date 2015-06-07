@@ -14,17 +14,18 @@
   },
   "scripts": {
     "test": "",
-    "start": "wzrd example.js -- -t brfs"
+    "start": "budo example.js --live -- -t brfs"
   },
   "dependencies": {
-    "component-delegate": "^0.2.3",
     "component-emitter": "^1.1.3",
+    "dom-event": "0.0.5",
+    "dom-select": "0.0.0",
     "extend": "^2.0.0",
     "lodash.template": "^2.4.1"
   },
   "devDependencies": {
     "brfs": "^1.2.0",
     "browserify": "^8.1.1",
-    "wzrd": "^1.2.1"
+    "budo": "^4.0.0"
   }
 }
